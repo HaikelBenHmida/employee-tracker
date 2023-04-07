@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Admin Dashboard</title>
+        <link rel="stylesheet" href="/css/style.css">
+    </head>
+    <body>
+        <header>
+            <h1>Admin Dashboard</h1>
+        </header>
+        <nav>
+            <a href="/">Home</a>
+            <a href="/admin/employee/add">Add Employee</a>
+            <a href="/admin/logout">Logout</a>
+        </nav>
+        <main>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% employees.forEach(function(employee) { %>
+                        <tr>
+                            <td><%= employee.name %></td>
+                            <td><%= employee.email %></td>
+                            <td>
+                                <form action="/admin/employee/delete" method="POST">
+                                    <input type="hidden" name="employeeId" value="<%= employee._id %>">
+                                    <button type="submit">Delete</button>
+                                </form>
+                            </td>
+                        </tr>
+                    <% }) %>
+                </tbody>
+            </table>
+        </main>
+    </body>
+</html>
