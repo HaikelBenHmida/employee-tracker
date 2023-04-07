@@ -1,0 +1,73 @@
+<!-- File: views/month-stats.ejs -->
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title><%= title %></title>
+  <!-- Bootstrap 5 CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css">
+</head>
+<body>
+  <div class="container">
+    <h1 class="text-center my-5"><%= title %></h1>
+
+    <div class="row">
+      <div class="col-md-6 mb-3">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">Total Hours</h5>
+            <h6 class="card-subtitle mb-2 text-muted"><%= month %>, <%= year %></h6>
+            <h1 class="card-text text-center my-5"><%= totalHours %></h1>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6 mb-3">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">Average Hours per Day</h5>
+            <h6 class="card-subtitle mb-2 text-muted"><%= month %>, <%= year %></h6>
+            <h1 class="card-text text-center my-5"><%= averageHours %></h1>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <% if (message) { %>
+      <div class="alert alert-danger"><%= message %></div>
+    <% } %>
+
+    <% if (records.length > 0) { %>
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>Date</th>
+            <th>Arrival Time</th>
+            <th>Departure Time</th>
+            <th>Total Hours</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% records.forEach(function(record) { %>
+            <tr>
+              <td><%= record.date.toDateString() %></td>
+              <td><%= record.arrivalTime %></td>
+              <td><%= record.departureTime %></td>
+              <td><%= record.totalHours %></td>
+            </tr>
+          <% }); %>
+        </tbody>
+      </table>
+    <% } else { %>
+      <div class="alert alert-warning">No records found.</div>
+    <% } %>
+
+    <div class="my-4">
+      <a href="/records/stats/<%= month %>/<%= year %>" class="btn btn-primary">Back to Statistics</a>
+      <a href="/" class="btn btn-secondary">Back to Home</a>
+    </div>
+  </div>
+
+  <!-- Bootstrap 5 JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
