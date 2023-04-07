@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Employee Dashboard</title>
+        <link rel="stylesheet" href="/css/style.css">
+    </head>
+    <body>
+        <header>
+            <h1>Welcome, <%= employee.name %>!</h1>
+        </header>
+        <nav>
+            <a href="/">Home</a>
+            <% if (employee.isAdmin) { %>
+                <a href="/admin/dashboard">Admin Dashboard</a>
+            <% } %>
+            <a href="/employee/add-record">Add Record</a>
+            <a href="/employee/logout">Logout</a>
+        </nav>
+        <main>
+            <% if (records.length === 0) { %>
+                <p>No records found.</p>
+            <% } else { %>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Date</th>
+                            <th>Start Time</th>
+                            <th>End Time</th>
+                            <th>Duration</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% records.forEach(function(record) { %>
+                            <tr>
+                                <td><%= record.start.toDateString() %></td>
+                                <td><%= record.start.toLocaleTimeString() %></td>
+                                <td><%= record.end ? record.end.toLocaleTimeString() : '-' %></td>
+                                <td><%= record.end ? getDuration(record.start, record.end) : '-' %></td>
+                                <td>
+                                    <a href="/employee/edit-record/<%= record._id %>">Edit</a>
+                                </td>
+                            </tr>
+                        <% }) %>
+                    </tbody>
+                </table>
+            <% } %>
+        </main>
+        <script>
+            function getDuration(start, end) {
+                const duration = end - start;
+                const hours = Math.floor(duration / (1000 * 60 * 60));
+                const minutes = Math.floor((duration % (1000 * 60 * 60)) / (1000 * 60));
+                return `${hours} hours, ${minutes} minutes`;
+            }
+        </script>
+    </body>
+</html>
