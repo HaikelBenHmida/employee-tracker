@@ -1,0 +1,38 @@
+<!-- File: views/login.ejs -->
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title><%= title %></title>
+  <!-- Bootstrap 5 CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css">
+</head>
+<body>
+  <div class="container">
+    <h1 class="text-center my-5"><%= title %></h1>
+
+    <% if (message) { %>
+      <div class="alert alert-danger"><%= message %></div>
+    <% } %>
+
+    <form method="post">
+      <div class="mb-3">
+        <label for="username" class="form-label">Username</label>
+        <input type="text" name="username" class="form-control" required>
+      </div>
+
+      <div class="mb-3">
+        <label for="password" class="form-label">Password</label>
+        <input type="password" name="password" class="form-control" required>
+      </div>
+
+      <div class="mb-3">
+        <button type="submit" class="btn btn-primary">Login</button>
+      </div>
+    </form>
+  </div>
+
+  <!-- Bootstrap 5 JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
