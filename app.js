@@ -10,11 +10,7 @@ const employeeRouter = require('./routes/employee');
 const app = express();
 
 // Connect to database
-mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/employee-tracker', {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-    useCreateIndex: true
-});
+mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/employee-tracker');
 
 // Setup view engine
 app.set('views', path.join(__dirname, 'views'));
@@ -53,3 +49,4 @@ app.use(function(err, req, res, next) {
 });
 
 module.exports = app;
+
