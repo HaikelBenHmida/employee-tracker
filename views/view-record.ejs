@@ -1,0 +1,50 @@
+<!-- File: views/view-record.ejs -->
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title><%= title %></title>
+  <!-- Bootstrap 5 CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css">
+</head>
+<body>
+  <div class="container">
+    <h1 class="text-center my-5"><%= title %></h1>
+
+    <% if (message) { %>
+      <div class="alert alert-danger"><%= message %></div>
+    <% } %>
+
+    <table class="table table-striped">
+      <tr>
+        <th>Name</th>
+        <td><%= record.name %></td>
+      </tr>
+      <tr>
+        <th>Date</th>
+        <td><%= record.date.toDateString() %></td>
+      </tr>
+      <tr>
+        <th>Time In</th>
+        <td><%= record.timeIn.toLocaleTimeString() %></td>
+      </tr>
+      <tr>
+        <th>Time Out</th>
+        <td><%= record.timeOut.toLocaleTimeString() %></td>
+      </tr>
+    </table>
+
+    <div class="my-4">
+      <a href="/records/edit/<%= record._id %>" class="btn btn-primary">Edit</a>
+      <form method="post" class="d-inline-block ms-2" onsubmit="return confirm('Are you sure you want to delete this record?');">
+        <input type="hidden" name="_method" value="DELETE">
+        <button type="submit" class="btn btn-danger">Delete</button>
+      </form>
+      <a href="/" class="btn btn-secondary ms-2">Back</a>
+    </div>
+  </div>
+
+  <!-- Bootstrap 5 JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
