@@ -4,7 +4,7 @@ An employee tracker application built with Node.js and MongoDB.
 
 ## Installation
 
-1. Clone the repository: `git clone https://github.com/your-username/employee-tracker.git`
+1. Clone the repository: `git clone https://github.com/HaikelBenHmida/employee-tracker.git`
 2. Install the dependencies: `npm install`
 3. Set the environment variables: `cp .env.example .env` and modify the values as needed
 4. Start the server: `npm start`
