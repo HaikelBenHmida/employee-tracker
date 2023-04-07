@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title><%= title %></title>
+        <link rel="stylesheet" href="/css/style.css">
+    </head>
+    <body>
+        <header>
+            <h1><%= title %></h1>
+        </header>
+        <nav>
+            <a href="/">Home</a>
+            <% if (employee) { %>
+                <% if (employee.isAdmin) { %>
+                    <a href="/admin/dashboard">Admin Dashboard</a>
+                <% } else { %>
+                    <a href="/employee/dashboard">Employee Dashboard</a>
+                <% } %>
+                <a href="/employee/logout">Logout</a>
+            <% } else { %>
+                <a href="/employee/login">Employee Login</a>
+            <% } %>
+        </nav>
+        <main>
+            <%= content %>
+        </main>
+    </body>
+</html>
