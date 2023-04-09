@@ -1,11 +1,11 @@
 // File: controllers/employeeController.js
 
-const Employee = require('../models/Employee');
+import Employee, { find, findById, findByIdAndUpdate, findByIdAndDelete } from '../models/Employee';
 
 // Function to get all employee records
 async function getEmployeeRecords() {
   try {
-    const records = await Employee.find().sort({ date: 'desc' }).lean();
+    const records = await find().sort({ date: 'desc' }).lean();
     return records;
   } catch (err) {
     console.error(err);
@@ -28,7 +28,7 @@ async function addEmployeeRecord(recordData) {
 // Function to get an employee record by ID
 async function getEmployeeRecordById(recordId) {
   try {
-    const record = await Employee.findById(recordId).lean();
+    const record = await findById(recordId).lean();
     return record;
   } catch (err) {
     console.error(err);
@@ -39,7 +39,7 @@ async function getEmployeeRecordById(recordId) {
 // Function to update an employee record
 async function updateEmployeeRecord(recordId, recordData) {
   try {
-    await Employee.findByIdAndUpdate(recordId, recordData);
+    await findByIdAndUpdate(recordId, recordData);
     return true;
   } catch (err) {
     console.error(err);
@@ -50,7 +50,7 @@ async function updateEmployeeRecord(recordId, recordData) {
 // Function to delete an employee record
 async function deleteEmployeeRecord(recordId) {
   try {
-    await Employee.findByIdAndDelete(recordId);
+    await findByIdAndDelete(recordId);
     return true;
   } catch (err) {
     console.error(err);
@@ -58,7 +58,7 @@ async function deleteEmployeeRecord(recordId) {
   }
 }
 
-module.exports = {
+export default {
   getEmployeeRecords,
   addEmployeeRecord,
   getEmployeeRecordById,
