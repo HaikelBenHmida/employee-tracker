@@ -132,6 +132,6 @@ dist
 
 #me
 
-haikel*
-.pub
-.key
+#haikel*
+#.pub
+#.key
